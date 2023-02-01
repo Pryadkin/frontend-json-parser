@@ -26,6 +26,8 @@ module.exports = {
         },
     },
     rules: {
+        "semi": ["error", "never"],
+        "@typescript-eslint/semi": ["error", "never"],
         // allow parens in arrow function arguments as-needed https://eslint.org/docs/rules/arrow-parens
         'arrow-parens': ['error', 'as-needed'],
 
@@ -51,7 +53,7 @@ module.exports = {
         'no-void': ['error', { 'allowAsStatement': true }], // https://eslint.org/docs/rules/no-void
 
         // Disallow the use of console https://eslint.org/docs/rules/no-console
-        'no-console': ["error", { allow: ["warn", "error", "info"] }],
+        'no-console': ["warn", { allow: ["warn", "error", "info"] }],
 
         // Prevent usage of Array index in keys https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-array-index-key.md
         'react/no-array-index-key': 'off',
@@ -98,10 +100,6 @@ module.exports = {
         
         // Disallow the any type. https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-explicit-any.md
         '@typescript-eslint/no-explicit-any': ['off', { ignoreRestArgs: true }],
-        
-        // Forbid the use of extraneous packages
-        // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-extraneous-dependencies.md
-        'import/no-extraneous-dependencies': ['error', { 'devDependencies': ['**/*.test.{ts,tsx,js,jsx}', '**/*.stories.tsx'] }],
 
         // When there is only a single export from a module, prefer using default export over named export.
         'import/prefer-default-export': 'off', // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/prefer-default-export.md
