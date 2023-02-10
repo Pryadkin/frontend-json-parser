@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useEffect, useState} from 'react'
 
 import {Button, Input} from 'antd'
 
@@ -11,7 +12,14 @@ const {TextArea} = Input
 
 const App = () => {
     const [textAreaValue, setTextAreaValue] = useState('')
-    const [valObj, setValObj] = useState()
+    const [valObj, setValObj] = useState<any>()
+
+    useEffect(() => {
+        const jsonLocalNestedObj = localStorage.getItem('elementsTree')
+        const localNestedObj = jsonLocalNestedObj && JSON.parse(jsonLocalNestedObj)
+        setValObj(localNestedObj)
+    }, [])
+
     const parseText = (valJson: string) => {
         try {
             const value = JSON.parse(valJson)
@@ -44,8 +52,8 @@ const App = () => {
             />
             <Button
                 className={styles.btn}
-                type="primary"
                 onClick={handleButtonClick}
+                disabled={Boolean(!textAreaValue)}
             >
                 Начать проверку
             </Button>

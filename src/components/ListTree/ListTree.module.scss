@@ -1,7 +1,43 @@
 .wrapper {
     display: flex;
+    flex-direction: column;
     width: 100%;
-    height: calc(100vh - 400px);;
     margin: 10px 20px;
+}
+
+.form {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    padding: 15px;
+    background-color: var(--tree-color);
+}
+
+.formBtn {
+    display: inline-flex;
+    justify-content: center;
+
+    div {
+        display: flex;
+        justify-content: space-between;
+        width: 180px;
+    }
+}
+
+.btnWrapper {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    height: 75px;
+    justify-content: space-between;
+}
+
+.tree {
+    background-color: var(--tree-color);
+    border: 1px solid lightgray;
     overflow-y: scroll;
+    margin: 10px;
+    height: 200px;
 }
