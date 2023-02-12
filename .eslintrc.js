@@ -26,6 +26,7 @@ module.exports = {
         },
     },
     rules: {
+        "react/jsx-props-no-spreading": "off",
         "semi": ["error", "never"],
         "@typescript-eslint/semi": ["error", "never"],
         // allow parens in arrow function arguments as-needed https://eslint.org/docs/rules/arrow-parens

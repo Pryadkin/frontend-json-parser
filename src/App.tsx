@@ -3,12 +3,16 @@ import React, {useEffect, useState} from 'react'
 
 import {Button, Input} from 'antd'
 
+import {errorMessage} from './common/notifications'
+import {Dropzone} from './components/Dropzone'
 import {ListTree} from './components/ListTree'
 import {updateObjForTree} from './helpers/updateObjToTree'
 
 import styles from './App.module.scss'
 
 const {TextArea} = Input
+
+const textAreaPlaceholder = 'Enter the text in json format'
 
 const App = () => {
     const [textAreaValue, setTextAreaValue] = useState('')
@@ -28,9 +32,9 @@ const App = () => {
             setTextAreaValue('')
         } catch (err) {
             if (err instanceof Error) {
-                console.log(err.message)
+                errorMessage(err, 'Error')
             } else {
-                console.log('Unexpected error', err)
+                errorMessage((err as any), 'Unexpected error')
             }
         }
     }
@@ -43,20 +47,24 @@ const App = () => {
 
     return (
         <div className={styles.wrapper}>
-            <TextArea
-                className={styles.textArea}
-                value={textAreaValue}
-                rows={10}
-                placeholder="Введите текст в формате json"
-                onChange={handleTextAreaChange}
-            />
+            <div className={styles.inputWrapper}>
+                <Dropzone setValue={setTextAreaValue} />
+                <TextArea
+                    className={styles.textArea}
+                    value={textAreaValue}
+                    rows={10}
+                    placeholder={textAreaPlaceholder}
+                    onChange={handleTextAreaChange}
+                />
+            </div>
+
             <Button
-                className={styles.btn}
                 onClick={handleButtonClick}
                 disabled={Boolean(!textAreaValue)}
             >
-                Начать проверку
+                Start checking
             </Button>
+
             {valObj && (
                 <ListTree nestedObj={valObj} />
             )}

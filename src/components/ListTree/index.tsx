@@ -83,10 +83,10 @@ export const ListTree: React.FC<Props> = ({nestedObj}) => {
 
             <div className={styles.btnWrapper}>
                 <Button onClick={handleSaveResultClick}>
-                    Сохранить результат проверки
+                    Save the checking result
                 </Button>
                 <Button onClick={handleExportResultClick}>
-                    Экспортировать результат проверки
+                    Export the check result
                 </Button>
             </div>
 
@@ -120,7 +120,6 @@ export const ListTree: React.FC<Props> = ({nestedObj}) => {
                     </Form.Item>
                 </Form>
             )}
-
         </div>
     )
 }
