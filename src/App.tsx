@@ -27,8 +27,8 @@ const App = () => {
     const parseText = (valJson: string) => {
         try {
             const value = JSON.parse(valJson)
-            const updateObj = updateObjForTree(value)
-            setValObj(updateObj)
+            const objForTree = updateObjForTree(value)
+            setValObj(objForTree)
             setTextAreaValue('')
         } catch (err) {
             if (err instanceof Error) {
@@ -41,7 +41,7 @@ const App = () => {
     const handleTextAreaChange = (e: any) => {
         setTextAreaValue(e.target.value)
     }
-    const handleButtonClick = () => {
+    const handleStartCheckingButtonClick = () => {
         parseText(textAreaValue)
     }
 
@@ -59,7 +59,7 @@ const App = () => {
             </div>
 
             <Button
-                onClick={handleButtonClick}
+                onClick={handleStartCheckingButtonClick}
                 disabled={Boolean(!textAreaValue)}
             >
                 Start checking

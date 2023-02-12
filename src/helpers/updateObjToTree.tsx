@@ -47,28 +47,6 @@ export const renameElement = (
     return item
 })
 
-export const toLowerKeys = (nestedObj: any) => {
-    const lowerCaseObj: any = {}
-    Object.entries(nestedObj)
-        .forEach(([key, value]) => {
-            const lowerKey = key.toLowerCase()
-            lowerCaseObj[lowerKey] = value
-            if (Array.isArray(value)) {
-                lowerCaseObj[lowerKey] = []
-                value.forEach(el => {
-                    if (typeof el === 'string') {
-                        lowerCaseObj[lowerKey].push(el)
-                    } else {
-                        lowerCaseObj[lowerKey].push(toLowerKeys(el))
-                    }
-                })
-            } else if (value && typeof value === 'object') {
-                lowerCaseObj[lowerKey] = toLowerKeys(value)
-            }
-        })
-    return lowerCaseObj
-}
-
 export const updateObjForTree = (nestedObj: any): any => {
     if (typeof nestedObj === 'string' || typeof nestedObj === 'number') {
         return {title: nestedObj, key: uuidv4()}

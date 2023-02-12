@@ -1,6 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable @typescript-eslint/no-shadow */
 import React, {useEffect, useState} from 'react'
 
 import {
@@ -8,10 +5,10 @@ import {
 } from '@ant-design/icons'
 import {
     Tree,
-    Button, Form, Input,
+    Button,
 } from 'antd'
 
-import {renameElement, deleteElement} from '../../helpers/updateObjToTree'
+import {EditingForm} from '../EditingForm'
 
 import styles from './ListTree.module.scss'
 
@@ -20,7 +17,6 @@ interface Props {
 }
 
 export const ListTree: React.FC<Props> = ({nestedObj}) => {
-    const [form] = Form.useForm()
     const [updateNestedObj, setUpdateNestedObj] = useState(nestedObj)
     const [selectElement, setSelectElement] = useState({
         key: '',
@@ -28,31 +24,11 @@ export const ListTree: React.FC<Props> = ({nestedObj}) => {
     })
     const onSelect = (value: any, e: any) => {
         setSelectElement({key: e.node.key, title: e.node.title})
-        form.setFieldsValue({
-            value: e.node.title,
-        })
     }
 
     useEffect(() => {
         setUpdateNestedObj(nestedObj)
     }, [nestedObj])
-
-    const onFinish = ({value}: any) => {
-        const update = renameElement(updateNestedObj, {title: value, key: selectElement.key})
-        setUpdateNestedObj(update)
-        form.setFieldsValue({
-            value: '',
-        })
-    }
-
-    const onFinishFailed = (errorInfo: any) => {
-        console.log('Failed:', errorInfo)
-    }
-
-    const handleBtnDelete = () => {
-        const update = deleteElement(updateNestedObj, {title: selectElement.title, key: selectElement.key})
-        setUpdateNestedObj(update)
-    }
 
     const handleSaveResultClick = () => {
         const jsonElementsTree = JSON.stringify(updateNestedObj)
@@ -91,34 +67,11 @@ export const ListTree: React.FC<Props> = ({nestedObj}) => {
             </div>
 
             { selectElement.key && (
-                <Form
-                    form={form}
-                    className={styles.form}
-                    name="basic"
-                    labelCol={{span: 8}}
-                    wrapperCol={{span: 16}}
-                    style={{maxWidth: 600}}
-                    initialValues={{remember: true}}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
-                    autoComplete="off"
-                >
-                    <Form.Item
-                        label="Title"
-                        name="value"
-                    >
-                        <Input value={selectElement.title} />
-                    </Form.Item>
-
-                    <Form.Item className={styles.formBtn}>
-                        <Button type="default" htmlType="submit">
-                            Remane
-                        </Button>
-                        <Button type="primary" onClick={handleBtnDelete}>
-                            Delete
-                        </Button>
-                    </Form.Item>
-                </Form>
+                <EditingForm
+                    selectElement={selectElement}
+                    updateNestedObj={updateNestedObj}
+                    setUpdateNestedObj={setUpdateNestedObj}
+                />
             )}
         </div>
     )

@@ -5,27 +5,6 @@
     margin: 10px 20px;
 }
 
-.form {
-    position: absolute;
-    top: 106px;
-    left: 30px;
-    border: 1px solid lightgray;
-    border-radius: 4px;
-    padding: 15px;
-    background-color: var(--tree-color);
-}
-
-.formBtn {
-    display: inline-flex;
-    justify-content: center;
-
-    div {
-        display: flex;
-        justify-content: space-between;
-        width: 180px;
-    }
-}
-
 .btnWrapper {
     display: flex;
     flex-direction: column;
