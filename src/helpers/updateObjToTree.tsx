@@ -47,22 +47,36 @@ export const renameElement = (
     return item
 })
 
-export const updateObjForTree = (nestedObj: any): any => {
+export const updateObjForTree = (nestedObj: any, idx = '0'): any => {
+    const newId = `${idx}-0`
+
+    if (!nestedObj) return null
+
     if (typeof nestedObj === 'string' || typeof nestedObj === 'number') {
-        return {title: nestedObj, key: uuidv4()}
+        return {title: nestedObj, key: newId}
     }
+
     if (Array.isArray(nestedObj)) {
-        return nestedObj.map(el => {
+        return nestedObj.map((el, index) => {
+            const newIndex = `${idx}-${index}`
             if (typeof el === 'string' || typeof el === 'number') {
-                return {title: el, key: uuidv4()}
+                return {title: el, key: newIndex}
             }
-            return updateObjForTree(el)
+            return updateObjForTree(el, newIndex)
         })
     }
+
     return Object.entries(nestedObj)
-        .map(([key, value]) => ({
-            title: key,
-            key: uuidv4(),
-            children: Array.isArray(updateObjForTree(value)) ? updateObjForTree(value) : [updateObjForTree(value)],
-        }))
+        .map(([key, value], index) => {
+            const newIndex = `${idx}-${index}`
+            const objForTree = updateObjForTree(value, newIndex)
+
+            return ({
+                title: key,
+                key: newIndex,
+                children: Array.isArray(objForTree)
+                    ? objForTree
+                    : [objForTree],
+            })
+        })
 }
