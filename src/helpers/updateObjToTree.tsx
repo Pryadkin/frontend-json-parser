@@ -2,8 +2,7 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 import React from 'react'
 
-import {v4 as uuidv4} from 'uuid'
-
+// import {v4 as uuidv4} from 'uuid'
 interface ITreeObject {
     children: ITreeObject[],
     icon: any,
@@ -47,7 +46,7 @@ export const renameElement = (
     return item
 })
 
-export const updateObjForTree = (nestedObj: any, idx = '0'): any => {
+export const updateObjForTree = (nestedObj: ITreeObject, idx = '0'): any => {
     const newId = `${idx}-0`
 
     if (!nestedObj) return null
@@ -79,4 +78,24 @@ export const updateObjForTree = (nestedObj: any, idx = '0'): any => {
                     : [objForTree],
             })
         })
+}
+
+export const updateObjTreeForExport = (obj: any[]): any => {
+    let newObj: any = {}
+    const arr: any[] = []
+
+    obj.forEach(({title, children}) => {
+        if (children) {
+            newObj = {
+                ...newObj,
+                [title]: updateObjTreeForExport(children),
+            }
+        } else if (obj.length === 1) {
+            newObj = title
+        } else {
+            arr.push(title)
+        }
+    })
+
+    return arr.length > 0 ? arr : newObj
 }

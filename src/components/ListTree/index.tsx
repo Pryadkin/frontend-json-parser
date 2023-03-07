@@ -8,6 +8,7 @@ import {
     Button,
 } from 'antd'
 
+import {updateObjTreeForExport} from '../../helpers/updateObjToTree'
 import {EditingForm} from '../EditingForm'
 
 import styles from './ListTree.module.scss'
@@ -36,8 +37,9 @@ export const ListTree: React.FC<Props> = ({nestedObj}) => {
     }
 
     const handleExportResultClick = () => {
+        const objTreeForExport = updateObjTreeForExport(updateNestedObj)
         const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
-            JSON.stringify(updateNestedObj),
+            JSON.stringify(objTreeForExport),
         )}`
         const link = document.createElement('a')
         link.href = jsonString
