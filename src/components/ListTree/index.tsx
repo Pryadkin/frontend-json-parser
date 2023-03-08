@@ -38,6 +38,7 @@ export const ListTree: React.FC<Props> = ({nestedObj}) => {
 
     const handleExportResultClick = () => {
         const objTreeForExport = updateObjTreeForExport(updateNestedObj)
+        console.log(updateNestedObj)
         const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
             JSON.stringify(objTreeForExport),
         )}`
