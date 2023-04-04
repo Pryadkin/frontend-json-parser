@@ -3,7 +3,8 @@ import React, {useEffect} from 'react'
 import {Button, Form, Input} from 'antd'
 
 import {errorMessage} from '../../common/notifications'
-import {deleteElement, renameElement} from '../../helpers/updateObjToTree'
+
+import {deleteElement, renameElement} from './helpers'
 
 import styles from './EditingForm.module.scss'
 
@@ -38,7 +39,7 @@ export const EditingForm: React.FC<Props> = ({
     }
 
     const handleBtnDelete = () => {
-        const update = deleteElement(updateNestedObj, {title: selectElement.title, key: selectElement.key})
+        const update = deleteElement(updateNestedObj, selectElement.key)
         setUpdateNestedObj(update)
     }
     return (
