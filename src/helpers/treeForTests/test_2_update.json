@@ -118,12 +118,18 @@
             "key": "0-2-0-2",
             "children": [
               {
-                "title": "basis_name",
+                "title": "1",
                 "key": "0-2-0-2-0",
                 "children": [
                   {
-                    "title": "null",
-                    "key": "0-2-0-2-0-0"
+                    "title": "basis_name",
+                    "key": "0-2-0-2-0-0",
+                    "children": [
+                      {
+                        "title": "null",
+                        "key": "0-2-0-2-0-0-0"
+                      }
+                    ]
                   }
                 ]
               }
@@ -134,16 +140,21 @@
             "key": "0-2-0-3",
             "children": [
               {
-                "title": "competence_name",
+                "title": "1",
                 "key": "0-2-0-3-0",
                 "children": [
                   {
-                    "title": "null",
-                    "key": "0-2-0-3-0-0"
+                    "title": "competence_name",
+                    "key": "0-2-0-3-0-0",
+                    "children": [
+                      {
+                        "title": "null",
+                        "key": "0-2-0-3-0-0-0"
+                      }
+                    ]
                   }
                 ]
               }
-              
             ]
           }
         ]

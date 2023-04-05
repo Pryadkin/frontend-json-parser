@@ -160,6 +160,42 @@
                         ]
                     }
                 ]
+            },
+            {
+                "title": "3",
+                "key": "0-2-2",
+                "children": [
+                    {
+                        "title": "name",
+                        "key": "0-2-2-0",
+                        "children": [
+                            {
+                                "title": "name_3",
+                                "key": "0-2-2-0-0"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "surname",
+                        "key": "0-2-2-1",
+                        "children": [
+                            {
+                                "title": "surname_3",
+                                "key": "0-2-2-1-0"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "age",
+                        "key": "0-2-2-2",
+                        "children": [
+                            {
+                                "title": 70,
+                                "key": "0-2-2-2-0"
+                            }
+                        ]
+                    }
+                ]
             }
         ]
     }
