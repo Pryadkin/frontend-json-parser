@@ -1,7 +1,3 @@
-/* eslint-disable no-debugger */
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable @typescript-eslint/no-shadow */
-
 import {ITreeObject} from '../types'
 
 export const updateObjForTree = (nestedObj: ITreeObject, idx = '0'): any => {
@@ -15,7 +11,7 @@ export const updateObjForTree = (nestedObj: ITreeObject, idx = '0'): any => {
 
     if (Array.isArray(nestedObj)) {
         const aaa = nestedObj.map((el, index) => {
-            const newIndex = `${idx}-${index}`
+            const newIndex: string = `${idx}-${index}`
 
             // условие надо удалить видимо
             if (typeof el === 'string' || typeof el === 'number') {
@@ -35,21 +31,7 @@ export const updateObjForTree = (nestedObj: ITreeObject, idx = '0'): any => {
 
     const newObj = Object.entries(nestedObj)
         .map(([key, value], index) => {
-            // const newId = isChild ? idx : `${idx}-0`
-            // const newIndex = `${idx}-${index}`
-            // const newIndex = isChild ? idx : `${idx}-${index}`
-            // const newIndex2 = idx === newIndex ? newId : `${idx}-${index}`
             const updateIdx = `${idx}-${index}`
-            // if (value === null) {
-            //     return ({
-            //         title: key,
-            //         key: `${idx}-${index}`,
-            //         children: [
-            //             {title: 'null', key: `${updateIdx}-${index}`},
-            //         ],
-            //     })
-            // }
-
             const objForTree = updateObjForTree(value, updateIdx)
 
             return ({

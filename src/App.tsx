@@ -28,7 +28,6 @@ const App = () => {
         try {
             const value = JSON.parse(valJson)
             const objForTree = updateObjForTree(value)
-            console.log(objForTree)
             setValObj(objForTree)
             setTextAreaValue('')
         } catch (err) {
